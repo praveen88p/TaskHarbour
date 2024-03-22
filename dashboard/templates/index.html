@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<form id="image-form" method="post">
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Chat Interface</title>
+        {% load static %}
+        <link rel="stylesheet" href="static/index.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+       
+
+       
+    </head>
+
+    <body>
+        <div class="main-container">
+            <div class="side-bar">
+                <div class="sidebar-heading">
+                    <img class="logo-img" src="../static/images/logo.png" />
+                    TaskHarbor
+                </div>
+
+                <div class="dashboard">
+                    <a href="#" class="sidebar-link">
+                        <img src="../static/images/dashbord.png" />
+                        Dashboard
+                    </a>
+                </div>
+
+                <div class="image-gen">
+                   
+                    <a href="#" class="sidebar-link" id="image-link">
+                        <img src="../static/images/picture.png" />
+                        Image Generation
+                    </a>
+                </div>
+                <div class="music-gen">
+                    <a href="#" class="sidebar-link"  >
+                        <img src="../static/images/music.png" />
+                        Music Generation
+
+                    </a>
+                </div>
+                <div class="upscale">
+                    <a href="#" class="sidebar-link"onclick="fillInput('Music Generation')">
+                        <img src="../static/images/upscal.png" />
+                        Image Upscaling</a>
+                </div>
+                <div class="readme">
+                    <a href="#" class="sidebar-link">
+                        <img src="../static/images/readme.png" />
+                        ReadMe Generation</a>
+                </div>
+                <div class="error-sol">
+                    <a href="#" class="sidebar-link">
+                        <img src="../static/images/code.png" />
+                        Error Solver</a>
+                </div>
+                <div class="setting"><a href="#" class="sidebar-link">
+                        <img src="../static/images/setting.png" />
+                        Setting</a></div>
+            </div>
+            <div class="container">
+                <div class="tool-heading">
+                    <h3>Conversation</h3>
+                </div>
+                {% csrf_token %}
+                <div class="search-bar-main" id="search-bar-main">
+                    <form id="image-form" method="post" enctype="multipart/form-data" >
+                       
+                        <input id="inputText" type="text" name="user_input" id="inputText" placeholder="Search.....">
+                        <button id="search-button" type="submit">Search</button>
+                    </form>
+
+                   
+                </div>
+                <div class="banner">
+                    <img id="generated-image" class="custom-block-image img-fluid" src="media/generated_image.jpg" alt="Generated Image">
+                </div>
+            </div>
+            
+
+
+        </div>
+        </div>
+
+
+    <!-- <script>
+    $(document).ready(function() {
+  $('#inputText').submit(function(event) {
+    event.preventDefault();
+    
+    var searchQuery = $('#inputText').val();
+    console.log(searchQuery)
+    var selectedOption = $('input[name="option"]:checked').val();
+    console.log(selectedOption)
+    if (selectedOption === 'image') {
+      // Send the search query to the image generation view function
+      $.ajax({
+        url:  window.location.href,
+        type: 'POST',
+        data: {
+          'user_input': searchQuery,
+          'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(response) {
+          // Handle the response from the view function
+          console.log(response);
+        }
+      });
+    } else if (selectedOption === 'music') {
+      // Send the search query to the music generation view function
+    } else if (selectedOption === 'music') {
+      // Send the search query to the music generation view function
+      $.ajax({
+        url:  window.location.href,
+        type: 'POST',
+        data: {
+          'user_input': searchQuery,
+          'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(response) {
+          // Handle the response from the view function
+          console.log(response);
+        }
+      });
+    }
+  });
+});
+        </script> -->
+
+
+        <script src="static/index.js"></script>
+
+    </body>
+
+
+   
+
+    </html>
