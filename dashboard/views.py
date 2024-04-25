@@ -85,27 +85,44 @@ def gen_music(request):
 
 # for upscaling\
 
+# def upsc_img(request):
+#         if request.method == 'POST' and request.FILES['image']:
+#             image_file = request.FILES['image']
 
-import os
-import replicate
+#             # Save the uploaded file to the current directory
+#             with open(image_file.name, 'wb+') as destination:
+#                for chunk in image_file.chunks():
+#                     destination.write(chunk)
 
-os.environ["REPLICATE_API_TOKEN"] = "r8_enOV1KZHibj3kWt5nVd0jwCgw2rTQXV0LPLUH"
+#             return JsonResponse({'message': 'Image uploaded successfully.'})
+#         else:
+#             return JsonResponse({'error': 'No image found in the request.'}, status=400)
+
+
+def upsc_save(image_file):
+    file_path = f"{settings.MEDIA_ROOT}/uploaded-img.jpg"
+
+
+        # Save the uploaded file to the project directory
+    with open(file_path, 'wb+') as destination:
+        for chunk in image_file.chunks():
+            destination.write(chunk)
+
 
 
 def upsc_img(request):
-    if request.method == "POST":
-        # Get the image file from the request
-        image_file = request.FILES["image"]
+    if request.method == 'POST':
+        print('123456789')
+        print(request.FILES['image-upscale'])
+        print("hgfvcdfvdsfv")
 
-        # Call the API with the image file
-        input = {"img": image_file}
-        output =replicate.run("tencentarc/gfpgan:0fbacf7afc6c144e5be9767cff80f25aff23e52b0708f17e20f9879b2f21516c", input)
+        image_file = request.FILES['image-upscale']
+        if(image_file):
+            upsc_save(image_file)
 
-        # Render the output in the HTML template
-        return render(request, "img_upsc.html", {"output": output})
-
-    return render(request, "img_upsc.html")
-
+        return JsonResponse({'message': 'Image uploaded successfully.'})
+    else:
+        return render(request, 'img_upsc.html')
 
 # read me generaion
 

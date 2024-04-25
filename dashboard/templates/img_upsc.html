@@ -6,19 +6,14 @@
     </div>
 
 {% endblock %}
-
 {% block input %}
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="file" id="id_image" name="image">
-    <button type="button" onclick="upscale_img()">Upscale</button>
-  </form>
-  <div>
-    <img src="{{ output }}">
-  </div>
+<form method="post" enctype="multipart/form-data" action="/image-upscale_link">
+  {% csrf_token %}
+  <input type="file" name='image-upscale'>
+  <button type="submit">Upload</button>
+</form>
 
 {% endblock %}
-
 {% block body %} {% endblock %}
         
 
