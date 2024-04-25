@@ -1,0 +1,31 @@
+{% extends 'basic.html' %}
+{% block title %} Settings Title {% endblock %}
+{% block content %} 
+<div class="my-custom-class">
+        <h3>Text To Music</h3>
+    </div>
+
+{% endblock %}
+    
+{% block input %}
+<div class="search-bar-main" id="search-bar-main">
+    <form id="image-form" method="post" enctype="multipart/form-data" >
+       
+        <input id="inputText" type="text" name="user_input" id="inputText" placeholder="Search.....">
+        <button id="search-button" type="submit">Search</button>
+    </form>
+
+   
+</div> 
+{% endblock %}
+{% block audio %}   
+<audio id="generated-audio" controls>
+                      <source src="{% if generated_image %}{{ generated_image }}{% else %}media/generated_music.mp3{% endif %}" type="audio/mpeg">
+                      Your browser does not support the audio element.
+                  </audio>
+   
+{% endblock %}
+
+{% block body %} {% endblock %}
+        
+

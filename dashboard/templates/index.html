@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="dashboard">
-                    <a href="#" class="sidebar-link">
+                    <a href="" class="sidebar-link">
                         <img src="../static/images/dashbord.png" />
                         Dashboard
                     </a>
@@ -31,43 +31,43 @@
 
                 <div class="image-gen">
                    
-                    <a href="#" class="sidebar-link" id="image-link">
+                    <a href="image_link" class="sidebar-link" id="image-link">
                         <img src="../static/images/picture.png" />
                         Image Generation
                     </a>
                 </div>
                 <div class="music-gen">
-                    <a href="#" class="sidebar-link"  >
+                    <a href="music_link" class="sidebar-link" id="music-link" >
                         <img src="../static/images/music.png" />
                         Music Generation
 
                     </a>
                 </div>
                 <div class="upscale">
-                    <a href="#" class="sidebar-link"onclick="fillInput('Music Generation')">
+                    <a href="image-upscale_link" class="sidebar-link"onclick="fillInput('Music Generation')">
                         <img src="../static/images/upscal.png" />
                         Image Upscaling</a>
                 </div>
                 <div class="readme">
-                    <a href="#" class="sidebar-link">
+                    <a href="readme_link" class="sidebar-link">
                         <img src="../static/images/readme.png" />
                         ReadMe Generation</a>
                 </div>
                 <div class="error-sol">
-                    <a href="#" class="sidebar-link">
+                    <a href="error-sol_link" class="sidebar-link">
                         <img src="../static/images/code.png" />
                         Error Solver</a>
                 </div>
-                <div class="setting"><a href="#" class="sidebar-link">
+                <div class="setting"><a href="settings_link" class="sidebar-link">
                         <img src="../static/images/setting.png" />
                         Setting</a></div>
             </div>
             <div class="container">
                 <div class="tool-heading">
-                    <h3>Conversation</h3>
+                    <h3>Dashboard</h3>
                 </div>
                 {% csrf_token %}
-                <div class="search-bar-main" id="search-bar-main">
+                <!-- <div class="search-bar-main" id="search-bar-main">
                     <form id="image-form" method="post" enctype="multipart/form-data" >
                        
                         <input id="inputText" type="text" name="user_input" id="inputText" placeholder="Search.....">
@@ -75,10 +75,8 @@
                     </form>
 
                    
-                </div>
-                <div class="banner">
-                    <img id="generated-image" class="custom-block-image img-fluid" src="media/generated_image.jpg" alt="Generated Image">
-                </div>
+                </div> -->
+                
             </div>
             
 

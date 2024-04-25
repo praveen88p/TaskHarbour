@@ -1,0 +1,24 @@
+{% extends 'basic.html' %}
+{% block title %} Settings Title {% endblock %}
+{% block content %} 
+<div class="my-custom-class">
+        <h3>Readme generator</h3>
+    </div>
+
+{% endblock %}
+{% block input %}
+<form id="uploadForm" action="your_post_url_here" method="post" enctype="multipart/form-data">
+  <input type="file" id="fileInput" name="fileInput">
+  <button type="submit">Upload File</button>
+</form> 
+
+
+<h1>Generated README.md</h1>
+<pre>
+    {{ generated_readme_content|safe }}
+</pre>
+<a href="./{{ generated_readme_name }}" download>Download README.md</a>
+{% endblock %}
+{% block body %} {% endblock %}
+        
+

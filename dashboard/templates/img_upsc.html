@@ -1,0 +1,24 @@
+{% extends 'basic.html' %}
+{% block title %} Settings Title {% endblock %}
+{% block content %} 
+<div class="my-custom-class">
+        <h3>Image Upscaling using Ai</h3>
+    </div>
+
+{% endblock %}
+
+{% block input %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" id="id_image" name="image">
+    <button type="button" onclick="upscale_img()">Upscale</button>
+  </form>
+  <div>
+    <img src="{{ output }}">
+  </div>
+
+{% endblock %}
+
+{% block body %} {% endblock %}
+        
+

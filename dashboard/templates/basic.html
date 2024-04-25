@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<form id="image-form" method="post">
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{% block title %} {% endblock %}</title>
+        {% load static %}
+        <link rel="stylesheet" href="static/index.css" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+       
+
+       
+    </head>
+
+    <body>
+        <div class="main-container">
+            <div class="side-bar">
+                <div class="sidebar-heading">
+                    <img class="logo-img" src="../static/images/logo.png" />
+                    TaskHarbor
+                </div>
+
+                <div class="dashboard">
+                    <a href="index_link" class="sidebar-link">
+                        <img src="../static/images/dashbord.png" />
+                        Dashboard
+                    </a>
+                </div>
+
+                <div class="image-gen">
+                   
+                    <a href="image_link" class="sidebar-link" id="image-link">
+                        <img src="../static/images/picture.png" />
+                        Image Generation
+                    </a>
+                </div>
+                <div class="music-gen">
+                    <a href="music_link" class="sidebar-link" id="music-link" >
+                        <img src="../static/images/music.png" />
+                        Music Generation
+
+                    </a>
+                </div>
+                <div class="upscale">
+                    <a href="image-upscale_link" class="sidebar-link">
+                        <img src="../static/images/upscal.png" />
+                        Image Upscaling</a>
+                </div>
+                <div class="readme">
+                    <a href="readme_link" class="sidebar-link">
+                        <img src="../static/images/readme.png" />
+                        ReadMe Generation</a>
+                </div>
+                <div class="error-sol">
+                    <a href="error-sol_link" class="sidebar-link">
+                        <img src="../static/images/code.png" />
+                        Error Solver</a>
+                </div>
+                <div class="setting"><a href="settings_link" class="sidebar-link">
+                        <img src="../static/images/setting.png" />
+                        Setting</a></div>
+            </div>
+            <div class="container">
+                <div class="tool-heading">
+                    {% block content %}   {% endblock %}
+                </div>
+                {% csrf_token %}
+                
+                {% block input %} {% endblock %}
+
+                
+                {% block audio %}   {% endblock %}
+                
+                {% block image %} {% endblock %} 
+        
+            </div>
+            
+  
+
+        </div>
+        </div>
+<!--body contents here -->
+      {% block body %} {% endblock %}
+
+  
+
+
+        <script src="static/index.js"></script>
+
+    </body>
+
+
+   
+
+    </html>

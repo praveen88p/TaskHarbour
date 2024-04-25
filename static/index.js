@@ -1,17 +1,18 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const ImgGenLink = document.getElementById('image-link');
-    const searchBarMain = document.getElementById('search-bar-main');
+// function upscale_img() {
+//   var formData = new FormData();
+//   formData.append('image', $('#id_image')[0].files[0]);
 
-    ImgGenLink.addEventListener('click', (event) => {
-        event.preventDefault(); // prevent the default link behavior
-        if (searchBarMain) {
-            searchBarMain.innerHTML = `
-            <form id="search-form" method="post" enctype="multipart/form-data">
-           
-            <input id="inputText" type="text" name="user_input" placeholder="Enter a search term...">
-            <button id="image-button" type="submit" name="action" value="image">Generate Image</button>
-        </form>
-            `;
-        }
-    });
-});
+//   $.ajax({
+//     type: 'POST',
+//     url: '/upsc_img/',
+//     data: formData,
+//     processData: false,
+//     contentType: false,
+//     success: function(response) {
+//       console.log(response.result);
+//     },
+//     error: function(error) {
+//       console.log(error.responseText);
+//     }
+//   });
+// }
