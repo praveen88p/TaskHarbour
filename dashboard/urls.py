@@ -17,6 +17,6 @@ urlpatterns = [
 
     path('error-sol_link', views.sol_error, name ='error-solver'),
 
-    path('image-upscale_link', views.upsc_img, name ='image-upscale')
+    path('image-upscale', views.upsc_img, name ='image-upscale')
 
 ]

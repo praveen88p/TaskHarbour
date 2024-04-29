@@ -20,7 +20,13 @@
 {% endblock %}
 {% block image %}
 <div class="banner">
-    <img id="generated-image" class="custom-block-image img-fluid" src={{generated_image}} alt="{{generated_image}}">
+
+    <!-- <img id="generated-image" class="custom-block-image img-fluid" src={{generated_image}} alt="{{generated_image}}"> -->
+    {% if generated_image %}
+    <img id="generated-image" class="custom-block-image img-fluid" src="{{ generated_image }}">
+{% else %}
+    <img id="generated-image" class="custom-block-image img-fluid" src="media/upload/Designer.png">
+{% endif %}
 
     
 </div>

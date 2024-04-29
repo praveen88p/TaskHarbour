@@ -45,7 +45,7 @@
                     </a>
                 </div>
                 <div class="upscale">
-                    <a href="image-upscale_link" class="sidebar-link">
+                    <a href="image-upscale" class="sidebar-link">
                         <img src="../static/images/upscal.png" />
                         Image Upscaling</a>
                 </div>
@@ -70,7 +70,10 @@
                 {% csrf_token %}
                 
                 {% block input %} {% endblock %}
+                {% block gen_output %} {% endblock %}
 
+
+         
                 
                 {% block audio %}   {% endblock %}
                 

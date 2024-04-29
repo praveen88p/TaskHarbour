@@ -2,7 +2,7 @@ import json
 from django.shortcuts import render,HttpResponse
 from django.shortcuts import render, redirect
 from urllib3 import request
-import openai
+
 import requests
 from django.http import JsonResponse
 import random
@@ -19,6 +19,8 @@ import time
 from django.http import JsonResponse
 from dotenv import load_dotenv
 load_dotenv()
+
+import subprocess
 
 
 
@@ -85,93 +87,164 @@ def gen_music(request):
 
 # for upscaling\
 
-# def upsc_img(request):
-#         if request.method == 'POST' and request.FILES['image']:
-#             image_file = request.FILES['image']
-
-#             # Save the uploaded file to the current directory
-#             with open(image_file.name, 'wb+') as destination:
-#                for chunk in image_file.chunks():
-#                     destination.write(chunk)
-
-#             return JsonResponse({'message': 'Image uploaded successfully.'})
-#         else:
-#             return JsonResponse({'error': 'No image found in the request.'}, status=400)
-
-
-def upsc_save(image_file):
-    file_path = f"{settings.MEDIA_ROOT}/uploaded-img.jpg"
-
-
-        # Save the uploaded file to the project directory
-    with open(file_path, 'wb+') as destination:
-        for chunk in image_file.chunks():
-            destination.write(chunk)
-
-
-
 def upsc_img(request):
-    if request.method == 'POST':
-        print('123456789')
-        print(request.FILES['image-upscale'])
-        print("hgfvcdfvdsfv")
+        if request.method == 'POST' and request.FILES['image']:
+            image_file = request.FILES['image']
 
-        image_file = request.FILES['image-upscale']
-        if(image_file):
-            upsc_save(image_file)
+            # Save the uploaded file to the current directory
+            with open(image_file.name, 'wb+') as destination:
+               for chunk in image_file.chunks():
+                    destination.write(chunk)
 
-        return JsonResponse({'message': 'Image uploaded successfully.'})
-    else:
-        return render(request, 'img_upsc.html')
+            return JsonResponse({'message': 'Image uploaded successfully.'})
+        else:
+            return  render(request, 'img_upsc.html')
+
+
+        
+
+
+
 
 # read me generaion
 
-def extract_file_contents(file_path):
-    try:
-        with open(file_path, 'r') as file:
-            file_contents = file.read()
-        return file_contents
-    except FileNotFoundError:
-        return "File not found."
-    except Exception as e:
-        return f"Error reading file: {str(e)}"
 
-api_key = os.getenv('OPENAI_KEY',None)
+
+
+
+# def gen_readme(request):
+    
+#     return render(request, 'readme_gen.html')
+
+import google.generativeai as genai
+
+# Configure with your API key
+genai.configure(api_key="AIzaSyCONZqruFjhIRhyZE8UH2CUOQH9eeCn5bE")
+
+# Initialize the generative model
+generation_config = {
+    "temperature": 1,
+    "top_p": 0.95,
+    "top_k": 0,
+    "max_output_tokens": 8192,
+}
+
+safety_settings = [
+    {
+        "category": "HARM_CATEGORY_HARASSMENT",
+        "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+    },
+    {
+        "category": "HARM_CATEGORY_HATE_SPEECH",
+        "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+    },
+    {
+        "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+        "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+    },
+    {
+        "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+        "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+    },
+]
+
+model = genai.GenerativeModel(model_name="gemini-1.5-pro-latest",
+                              generation_config=generation_config,
+                              safety_settings=safety_settings)
+
 def gen_readme(request):
     if request.method == 'POST':
-        file_path = request.POST.get('fileInput')  # Assuming you're sending the file path in a POST request
-        if file_path:
-            file_contents = extract_file_contents(file_path)
-            openai.api_key = api_key
-            # Send the contents of the code file to the OpenAI API
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": "You are a helpful assistant."},
-                    {"role": "user", "content": f"Generate a README file for the following Python code: ```{file_contents}```"}
-                ]
-            )
-            generated_readme = response.choices[0].message.content
-            context = {
-                'generated_readme_content': generated_readme,
-                'generated_readme_name': 'README.md'
+        user_input = request.POST.get('user_input', '')
+        if user_input.lower() == 'exit':
+            return JsonResponse({'response': 'Conversation ended.'})
+
+        # Start the chat with the user input as history
+        convo = model.start_chat(history=[])
+       
+      
+        # Send user message and retrieve response from the model
+        response = convo.send_message(f"Create a Readme file for my code : {user_input}")
+        generated_response = response.candidates[0].content.parts[0].text
+        generated_response = generated_response.replace('#', '\n \n')
+        generated_response = generated_response.replace('*', '\n \n')
+        generated_response = generated_response.replace('.', '\n \n')
+          # End the conversation
+        context ={
+           
+            'generated_response': generated_response,
             }
-
-            return render(request, 'readme_gen.html', context)
-         
-
-    return render(request, 'readme_gen.html')
+        return render(request, 'readme_gen.html', context)
+        
     
-     
-
-        
-
-        
-
- 
     return render(request, 'readme_gen.html')
 
+
+
+########################################################################################################################        
+#ERROR Solver 
+
+import google.generativeai as genai
+
+# Configure with your API key
+genai.configure(api_key="AIzaSyCONZqruFjhIRhyZE8UH2CUOQH9eeCn5bE")
+
+# Initialize the generative model
+generation_config = {
+    "temperature": 1,
+    "top_p": 0.95,
+    "top_k": 0,
+    "max_output_tokens": 8192,
+}
+
+safety_settings = [
+    {
+        "category": "HARM_CATEGORY_HARASSMENT",
+        "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+    },
+    {
+        "category": "HARM_CATEGORY_HATE_SPEECH",
+        "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+    },
+    {
+        "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+        "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+    },
+    {
+        "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+        "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+    },
+]
+
+model = genai.GenerativeModel(model_name="gemini-1.5-pro-latest",
+                              generation_config=generation_config,
+                              safety_settings=safety_settings)
 
 def sol_error(request):
-    return render(request,'error_sol.html')
+    if request.method == 'POST':
+        user_input = request.POST.get('user_input', '')
+        if user_input.lower() == 'exit':
+            return JsonResponse({'response': 'Conversation ended.'})
+
+        # Start the chat with the user input as history
+        convo = model.start_chat(history=[])
+       
+      
+        # Send user message and retrieve response from the model
+        response = convo.send_message(f"solve error in the code : {user_input}")
+        generated_response2 = response.candidates[0].content.parts[0].text
+       
+          # End the conversation
+        context ={
+           
+            'generated_response2': generated_response2,
+            }
+        return render(request, 'error_sol.html', context)
+        
+    
+    return render(request, 'error_sol.html')
+
+
+    
+
+
 

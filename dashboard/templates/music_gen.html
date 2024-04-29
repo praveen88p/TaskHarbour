@@ -11,7 +11,7 @@
 <div class="search-bar-main" id="search-bar-main">
     <form id="image-form" method="post" enctype="multipart/form-data" >
        
-        <input id="inputText" type="text" name="user_input" id="inputText" placeholder="Search.....">
+        <input id="inputText" type="text" name="user_input"  placeholder="Search.....">
         <button id="search-button" type="submit">Search</button>
     </form>
 
@@ -21,7 +21,7 @@
 {% block audio %}   
 <audio id="generated-audio" controls>
                       <source src="{% if generated_image %}{{ generated_image }}{% else %}media/generated_music.mp3{% endif %}" type="audio/mpeg">
-                      Your browser does not support the audio element.
+                      
                   </audio>
    
 {% endblock %}

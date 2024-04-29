@@ -7,10 +7,10 @@
 
 {% endblock %}
 {% block input %}
-<form method="post" enctype="multipart/form-data" action="/image-upscale_link">
+<form  id="uploadForm" method="post" enctype="multipart/form-data" action="{% url 'image-upscale' %}">
   {% csrf_token %}
-  <input type="file" name='image-upscale'>
-  <button type="submit">Upload</button>
+  <input type="file" id="fileInput"  name='file' accept="image/*">
+  <button id="uploadButton" type="submit" >Upload</button>
 </form>
 
 {% endblock %}

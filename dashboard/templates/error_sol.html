@@ -8,15 +8,31 @@
 {% endblock %}
 {% block input %}
 <div class="search-bar-main" id="search-bar-main">
-    <form id="image-form" method="post" enctype="multipart/form-data" >
-       
-        <input id="inputText" type="text" name="user_input" id="inputText" placeholder="Search.....">
-        <button id="search-button" type="submit">Search</button>
-    </form>
+  <form id="image-form" method="post" enctype="multipart/form-data" >
+     
+      <input id="inputText" type="text" name="user_input" id="inputText" placeholder="Search.....">
+      <button id="search-button" type="submit">Submit</button>
+  </form>
 
-   
 </div> 
+
 {% endblock %}
+{% if  response %}
+{% block gen_output %}
+<h2>Generated Response:</h2>
+
+<div class="output">
+  <p>{{ generated_response2 }}</p>
+</div>
+
+
+
+
+
+
+ {% endblock %}
+ {% endif %}
+
 
 {% block body %} {% endblock %}
         

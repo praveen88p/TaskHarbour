@@ -7,18 +7,33 @@
 
 {% endblock %}
 {% block input %}
-<form id="uploadForm" action="your_post_url_here" method="post" enctype="multipart/form-data">
-  <input type="file" id="fileInput" name="fileInput">
-  <button type="submit">Upload File</button>
-</form> 
+<div class="search-bar-main" id="search-bar-main">
+  <form id="image-form" method="post" enctype="multipart/form-data" >
+     
+      <input id="inputText" type="text" name="user_input" id="inputText" placeholder="Search.....">
+      <button id="search-button" type="submit">Generated ReadMe</button>
+  </form>
 
+</div> 
 
-<h1>Generated README.md</h1>
-<pre>
-    {{ generated_readme_content|safe }}
-</pre>
-<a href="./{{ generated_readme_name }}" download>Download README.md</a>
 {% endblock %}
+{% if  response %}
+{% block gen_output %}
+<h2>Generated Response:</h2>
+
+<div class="output">
+  <p>{{ generated_response }}</p>
+</div>
+
+
+
+
+
+
+ {% endblock %}
+ {% endif %}
+
+
 {% block body %} {% endblock %}
         
 
