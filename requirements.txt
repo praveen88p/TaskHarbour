@@ -94,3 +94,6 @@ whitenoise==6.7.0
 wikipedia==1.4.0
 zope.event==5.0
 zope.interface==7.2
+package1==1.0.0
+package2>=2.0.0,<3.0.0
+
