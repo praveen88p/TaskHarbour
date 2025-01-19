@@ -24,9 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-s)i!vr3ag@2#z@ej)20h@2scpqaoqj-1-mzj_1bo!3=_*qjw&!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['taskharbour-8hid.onrender.com',]
+CSRF_TRUSTED_ORIGINS = [
+    'https://taskharbour-8hid.onrender.com'
+]
+
 
 APPEND_SLASH = False
 # Application definition
