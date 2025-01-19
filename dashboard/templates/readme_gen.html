@@ -9,7 +9,7 @@
 {% block input %}
 <div class="search-bar-main" id="search-bar-main">
   <form id="image-form" method="post" enctype="multipart/form-data" >
-     
+         {% csrf_token %}
       <input id="inputText" type="text" name="user_input" id="inputText" placeholder="Search.....">
       <button id="search-button" type="submit">Generated ReadMe</button>
   </form>
