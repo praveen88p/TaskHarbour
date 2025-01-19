@@ -1,14 +1,14 @@
 Django==5.0.3
-Pillow==9.4.0
-Pillow==11.1.0
-protobuf==3.20.3
-Requests==2.32.3
-urllib3==1.26.16
-google-ai-generativelanguage==0.6.10
-google-api-core==2.24.0
-google-api-python-client==2.157.0
-google-auth==2.37.0
-google-auth-httplib2==0.2.0
-google-generativeai==0.8.3
-googleapis-common-protos==1.66.0
+Pillow
+Pillow
+protobuf
+Requests
+urllib3
+google-ai-generativelanguage
+google-api-core
+google-api-python-client
+google-auth
+google-auth-httplib2
+google-generativeai
+googleapis-common-protos
 
