@@ -23,7 +23,7 @@ A Django-based web application that provides multiple AI-powered generation serv
 
 1. Clone the repository:
    ```sh
-   git clone <repository_url>
+   git clone https://github.com/praveen88p/TaskHarbour.git
    cd TaskHarbour
    ```
 2. Install dependencies:
